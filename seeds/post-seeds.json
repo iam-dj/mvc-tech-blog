@@ -1,0 +1,33 @@
+[
+    {
+      "title": "You better start using A.I.",
+      "text": "AI should be utilized because it has the potential to revolutionize industries and solve complex problems more efficiently. With its ability to process and analyze vast amounts of data, AI can uncover valuable insights and patterns that humans might miss.",
+      "UserId":1
+    },
+    {
+      "title": "Poems",
+      "text": "Good, better, best. Never let it rest. Until your good is better, and your better is best.",
+      "UserId":1
+    },
+    {
+      "title": "Tech is evolving",
+      "text": "The rapid advancement of technology has transformed the way we live, work, and communicate, creating a digital landscape that is constantly evolving.",
+      "UserId":1
+    },
+    {
+      "title": "A.I.",
+      "text": "Artificial intelligence and machine learning are revolutionizing various industries, enabling automated decision-making, personalized experiences, and predictive analytics.",
+      "UserId":2
+    },
+    {
+      "title": "Blockchain",
+      "text": "The emergence of blockchain technology has the potential to revolutionize sectors such as finance, supply chain management, and cybersecurity, offering transparency, security, and decentralized solutions.",
+      "UserId":2
+    },
+    {
+      "title": "The Internet",
+      "text": "The Internet of Things (IoT) is connecting everyday objects to the internet, enabling data exchange and remote control, leading to increased efficiency and convenience in our daily lives.",
+      "UserId":2
+    }
+]
+  
