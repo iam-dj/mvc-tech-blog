@@ -1,18 +1,17 @@
 <div class="container">
     <div class="row mb-1">
-        <div class="col-md-12">
-            <div id="drty-card-header" class="card display-flex flex-row">
-                <div class="d-flex align-items-center" id="drty-card-header-textbox">
-                    <div class="row ">
-                        <div class="col-sm-8 flex-column mt-2">
-                            <div class="bg-light bg-opacity-75 rounded p-2" style="flex-grow: 1;">
+        <div class="col-md-12 border">
                                 <h4 class="">{{user.username}}</h4>
                                 <div class="" style="flex-grow: 1;">
                                     <div>
                                         <span>MVC Tech Blog</span>
                                     </div>
-                                
+                                <button id="new-btn">New Post</button>
                                 </div>
+                <div class="d-flex align-items-center" id="drty-card-header-textbox">
+                    <div class="row ">
+                        <div class="col-sm-8 flex-column">
+                            <div class="bg-light bg-opacity-75 rounded p-2" style="flex-grow: 1;">
                             </div>
                             <div class="col-md-12 display-flex flex-row justify-center">
                                
@@ -20,21 +19,19 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 </div>
 
-<div class="row">
     {{#each post}}
-        <div class="col-md-4 col-xl-3">
-            <div class="card">
-                    <h1 class="card-text text-truncate">{{this.title}}</h1>
-                    <h5>{{this.text}}</h5>
+        <div class="col-md-12 border" style="margin-bottom: 10px;">
+            <div class="">
+                    <h3 class="card-text text-truncate">{{this.title}}</h3>
+                    <h6>{{this.text}}</h6>
                     <div>
-                        <img class="" style="width:10%" data-id={{this.id}} src="/images/trash.png"
+                        <img class="" style="width:2%" data-id={{this.id}} src="/images/trash.png"
                              alt="">
-                        <img type="button" class="" style="width:10%" data-bs-toggle="modal"
+                        <img type="button" class="" style="width:2%" data-bs-toggle="modal"
                              data-bs-target="#updateModal" data-post-id={{this.id}}
                              src="/images/pencil.png">
                     </div>
@@ -42,4 +39,4 @@
             </div>
         </div>
     {{/each}}
-</div>
+

@@ -1,34 +1,67 @@
 <div class="row justify-content-center align-items-center">
     <div class="d-flex flex-column">
         {{#if account_deleted}}
-            <div class="alert alert-danger col-4 align-self-center">Account was successfully deleted.</div>
+        <div class="alert alert-danger col-4 align-self-center">Account was successfully deleted.</div>
         {{/if}}
         <div id="relative" class="d-flex justify-content-center">
             <img src="" class="img-fluid" style="max-height: 400px;">
         </div>
         <div id="move-buttons" class="d-flex justify-content-center">
-            
+
         </div>
     </div>
 </div>
 
 
-            <form class="login-form">
+<form class="login-form">
 
-                    <div class="mb-3">
-                        <label for="username-login" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username-login" placeholder="Username">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password-login" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password-login" placeholder="Password">
-                    </div>
+    <div class="mb-3">
+        <label for="username-login" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username-login" placeholder="Username">
+    </div>
+    <div class="mb-3">
+        <label for="password-login" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password-login" placeholder="Password">
+    </div>
 
-                    <button type="submit" class="btn button-72 text-white">Login</button>
+    <button type="submit" class="sm-btn btn-danger">Login</button>
+    <button type="button" id="signup" class="sm-btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+        Sign Up
+    </button>
+
+
+</form>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </form>
+                <div class="modal-body">
+                    <form class="signup-form">
+                        <div class="mb-3">
+                            <label for="username-signup" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username-signup" placeholder="Username">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password-signup" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password-signup" placeholder="Password">
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-sm btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" id="sign-up" class="btn-sm btn-danger">Continue</button>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
 <script src="/js/login.js"></script>
+<script src="/js/signup.js"></script>

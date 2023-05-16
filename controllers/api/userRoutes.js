@@ -3,6 +3,41 @@ const router = express.Router();
 const { User } = require("../../models");
 const withAuth = require("../../utils/auth");
 
+// router.post('/', async (req, res) => {
+//   try {
+//     const userData = await User.create(req.body);
+
+//     req.session.save(() => {
+//       req.session.user_id = userData.id;
+//       req.session.logged_in = true;
+
+//       res.status(200).json(userData);
+//     });
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+// });
+
+router.post("/", async (req, res) => {
+  const newUser = {
+    username: req.body.username,
+    password: req.body.password,
+  };
+  try {
+    const userData = await User.create(newUser);
+
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+
+      res.status(200).json(userData);
+    });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+
+});
+
 router.post("/login", (req, res) => {
     // Find the user who matches the posted e-mail address
     User.findOne({ where: { username: req.body.username } })
@@ -34,61 +69,21 @@ router.post("/login", (req, res) => {
       });
   });
   
-  router.post("/logout", (req, res) => {
+  
+  router.post('/logout', (req, res) => {
     if (req.session.logged_in) {
-      // Remove the session variables
       req.session.destroy(() => {
-        logged = false;
         res.status(204).end();
       });
     } else {
       res.status(404).end();
     }
   });
-  
-  //test route for looking at seeds (we can comment out at any  time)
-  router.get("/", (req, res) => {
-    User.findAll()
-      .then((users) => {
-        res.json(users);
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json({ msg: "error occurred", err });
-      });
-  });
 
-  router.post("/delete-account", withAuth, async (req, res) => {
-    await User.destroy({
-      where: {
-        id: req.session.user_id,
-      }
-    })
-    res.redirect("/?account_deleted=true");
-  })
+
   
-  router.delete("/:id", async (req, res) => {
-    if (!req.session.logged_in) {
-      return res.status(403).json({ msg: "Login before deleting a User!" });
-    }
-    try {
-      const projectData = await User.destroy({
-        where: {
-          id: req.params.id,
-          UserId: req.session.user_id,
-        },
-      });
   
-      if (!projectData) {
-        res.status(404).json({ message: "No user found with this id!" });
-        return;
-      }
-  
-      res.status(200).json(projectData);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+
 
 
   module.exports = router;
