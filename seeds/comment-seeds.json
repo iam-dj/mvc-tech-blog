@@ -1,0 +1,44 @@
+[
+    {
+      "comment": "I'm on my AI tip",
+      "like": 10,
+       "UserId":2,
+       "PostId": 1
+    },
+    {
+      "comment": "Poems are great",
+      "like": 25,
+      "UserId":2,
+      "PostId": 2
+
+    },
+    {
+      "comment": "Tech is evolving, you are sooo right!",
+      "like": 25,
+      "UserId":2,
+      "PostId": 3
+
+    },
+    {
+      "comment": "A.I.is the future",
+      "like": 25,
+      "UserId":1,
+      "PostId": 4
+
+    },
+    {
+      "comment": "Blockchain still confuses me",
+      "like": 25,
+      "UserId":1,
+      "PostId": 5
+
+    },
+    {
+      "comment": "The Internet is the greatest invention ever",
+      "like": 25,
+      "UserId":1,
+      "PostId": 6
+
+    }
+]
+  

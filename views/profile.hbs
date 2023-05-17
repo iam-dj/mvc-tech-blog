@@ -6,7 +6,7 @@
                                     <div>
                                         <span>MVC Tech Blog</span>
                                     </div>
-                                <button id="new-btn">New Post</button>
+                                <button id="new-stamp-btn">New Post</button>
                                 </div>
                 <div class="d-flex align-items-center" id="drty-card-header-textbox">
                     <div class="row ">
@@ -23,20 +23,71 @@
     </div>
 </div>
 
+<!-- Add the form inside a container with an ID for easy selection -->
+<div class="row" id="new-stamp-form-container" style="display: none">
+    <div class="col-md-12">
+        <form class="form form-group required col-sm-12 col-lg-6 display-flex flex-row new-project-form bg-light bg-opacity-75 rounded pb-2">
+            <img src="" hidden="hidden" id="ac-img">
+            <label for="project-name" class="control-label" style="color:rgb(73, 73, 73)">Title</label>
+            <div class="form-group d-flex justify-content">
+                <input class="typeahead form-control form-input bg-light col-lg-9" type="text" id="project-name"
+                       name="project-name" placeholder="Tech News Title?" required/>
+            </div>
+
+            <div class="form-group ">
+                <label for="project-desc" class="control-label" style="color:rgb(73, 73, 73)">Text </label>
+                <textarea class="form-input form-group required bg-ligh col-lg-9 col-md-10" id="project-desc"
+                          name="project-desc"
+                          placeholder="Tell us more" required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="sm-btn btn-danger ">Create Blog</button>
+            </div>
+        </form>
+    </div>
+</div>
+
     {{#each post}}
         <div class="col-md-12 border" style="margin-bottom: 10px;">
             <div class="">
                     <h3 class="card-text text-truncate">{{this.title}}</h3>
                     <h6>{{this.text}}</h6>
                     <div>
-                        <img class="" style="width:2%" data-id={{this.id}} src="/images/trash.png"
+                        <img type="button" class="" style="width:2%" data-id={{this.id}} src="/images/trash.png"
                              alt="">
-                        <img type="button" class="" style="width:2%" data-bs-toggle="modal"
-                             data-bs-target="#updateModal" data-post-id={{this.id}}
-                             src="/images/pencil.png">
+                        <img type="button" class="" style="width:2%" data-toggle="modal" data-target="#updateModal" data-post-id={{this.id}} src="/images/pencil.png">
+
                     </div>
                 </div>
             </div>
         </div>
     {{/each}}
+
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark text-light">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateModalLabel">Update</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="update-form">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="text-update" class="form-label">Update Text</label>
+                        <input type="text" class="form-control" id="text-update" placeholder="text">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" id="updateBtn" data-bs-target="#deleteModal">
+                        Update
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+    <script src="./js/update.js"></script>
+    <script src="./js/newstamp.js"></script>
+    <script src="./js/delete.js"></script>
 

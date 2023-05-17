@@ -9,7 +9,7 @@ const withAuth = require("../../utils/auth");
   
   //test route for looking at seeds (we can comment out at any  time)
   router.get("/", (req, res) => {
-    Post.findAll()
+    Comment.findAll()
       .then((comments) => {
         res.json(comments);
       })

@@ -7,18 +7,17 @@ Comment.init(
   {
     // ** id will auto generate
     comment: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: true,
       // validate: {
       //   isAlpha: true,
       // },
     },
     like: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
 
-    //**foreign key: dest_id will auto generate
   },
   {
     sequelize,

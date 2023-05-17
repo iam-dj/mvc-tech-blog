@@ -8,6 +8,9 @@ Post.belongsTo(User, {
 User.hasMany(Post, {
   onDelete: "CASCADE",
 });
+Comment.belongsTo(Post, {
+  onDelete: "CASCADE",
+});
 User.hasMany(Comment, {
   onDelete: "CASCADE",
 });

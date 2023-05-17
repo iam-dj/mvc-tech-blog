@@ -1,0 +1,48 @@
+{{#each users}}
+    {{#each Posts}}
+        <div class="col-md-12 border" style="margin-bottom: 10px;"> 
+            <h3>{{title}}</h3>
+            <h6>{{text}}</h6>
+            {{#each ../Comments}} <!-- Use `../` to go up one level to access the Comments array -->
+                <h6>{{comment}} (Post ID: {{../id}})</h6> <!-- Display the PostId alongside each comment -->
+            {{/each}}
+            <div>
+                <img type="button" class="" style="width:4%" data-toggle="modal" data-target="#updateModal"
+                    data-post-id={{id}} src="/images/comment.png">
+            </div>
+        </div>
+    {{/each}}
+{{/each}}
+
+
+
+                        
+                        
+
+                
+
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark text-light">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateModalLabel">Comment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="update-form">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="text-update" class="form-label">Comment</label>
+                        <input type="text" class="form-control" id="text-update" placeholder="text">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" id="updateBtn" data-bs-target="#deleteModal">
+                        Update
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+    <script src="./js/comment.js"></script>
