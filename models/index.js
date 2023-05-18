@@ -11,13 +11,12 @@ User.hasMany(Post, {
 Comment.belongsTo(Post, {
   onDelete: "CASCADE",
 });
-User.hasMany(Comment, {
-  onDelete: "CASCADE",
-});
 Post.hasMany(Comment, {
   onDelete: "CASCADE",
 });
-
+User.hasMany(Comment, {
+  onDelete: "CASCADE",
+});
 
 
 module.exports = {

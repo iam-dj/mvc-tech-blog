@@ -1,18 +1,32 @@
-{{#each users}}
-    {{#each Posts}}
-        <div class="col-md-12 border" style="margin-bottom: 10px;"> 
-            <h3>{{title}}</h3>
-            <h6>{{text}}</h6>
-            {{#each ../Comments}} <!-- Use `../` to go up one level to access the Comments array -->
-                <h6>{{comment}} (Post ID: {{../id}})</h6> <!-- Display the PostId alongside each comment -->
-            {{/each}}
-            <div>
-                <img type="button" class="" style="width:4%" data-toggle="modal" data-target="#updateModal"
-                    data-post-id={{id}} src="/images/comment.png">
-            </div>
-        </div>
+
+
+{{#each allPosts}}
+  <div class="post border" style="margin-bottom: 30px;">
+    <a href='/posts/{{id}}'><h3>{{title}}</h3></a>
+    <p style="font-size: xx-small;">{{this.createdAt}}</p>
+    <p>{{text}}</p>
+    <h4>Comments:</h4>
+    {{#each ../allComments}}
+      {{#isEqual ../id PostId}}
+<p style="position: relative;">
+  {{comment}}
+ 
+
+  <button style="position: absolute; top: 0; right: 0; width: 5%;" data-id={{id}}>x</button>
+ 
+
+</p>     
+ {{/isEqual}}
     {{/each}}
+    <div>
+      {{!-- <img id="comment"  type="button" style="width:8%" data-toggle="modal" data-target="#commentModal"  src="/images/comment.png" comment-id={{id}} > Post Comment </img> --}}
+      
+    </div>
+  </div>
 {{/each}}
+
+
+
 
 
 
@@ -21,23 +35,23 @@
 
                 
 
-    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content bg-dark text-light">
             <div class="modal-header">
-                <h5 class="modal-title" id="updateModalLabel">Comment</h5>
+                <h5 class="modal-title" id="commentModalLabel">Comment</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form class="update-form">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="text-update" class="form-label">Comment</label>
-                        <input type="text" class="form-control" id="text-update" placeholder="text">
+                        <input type="text" class="form-control" id="commentInput" placeholder="text">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger" id="updateBtn" data-bs-target="#deleteModal">
-                        Update
+                    <button type="submit" class="btn btn-danger" id="commentBtn" data-bs-target="#updateModal">
+                        Comment
                     </button>
                 </div>
             </form>
@@ -46,3 +60,4 @@
 </div>
 
     <script src="./js/comment.js"></script>
+    <script src="./js/deleteComment.js"></script>

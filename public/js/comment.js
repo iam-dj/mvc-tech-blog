@@ -1,47 +1,38 @@
-// Get the update form and update button elements
-const updateForm = document.querySelector(".update-form");
-const updateBtn = document.querySelector("#updateBtn");
-
-const updateButtons = document.querySelectorAll("[data-post-id]");
-updateButtons.forEach((button) => {
-  button.addEventListener("click", (event) => {
-    // Set the stamp's id as a data attribute on the "Update" button in the modal
-    const postID = event.target.getAttribute("data-post-id");
-    const updateBtn = document.querySelector("#updateBtn");
-    updateBtn.setAttribute("stamp-id", postID);
-  });
-});
-
-//
-
-const updateFormHandler = async (event) => {
+// Function to handle the form submission and create a new comment
+const handleCommentSubmit = async (event) => {
   event.preventDefault();
 
-  // Get the id of the stamp to update
-  const postID = document.querySelector("#updateBtn").getAttribute("stamp-id");
+  try {
+    // Get the comment text from the form input
+    const newComment = document.querySelector('#commentInput').value;
 
-  // Get the new text from the form
-  const text = document.querySelector("#text-update").value.trim();
-  console.log(text);
-  console.log(postID);
-  // Make the PUT request to update the stamp
-  const response = await fetch(`/posts/${postID}`, {
-    method: "PUT",
-    body: JSON.stringify({ text }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+    // Retrieve the postId value from the appropriate image element
+    const element = document.querySelector('#comment');
+    const postId = element.getAttribute('comment-id');
 
-  if (response.ok) {
-    // If successful, redirect the browser to the profile page
-    document.location.replace("/profile");
-  } else {
-    console.log("Failed to update stamp");
+    // console.log(postId);
+
+    // Send a POST request to the server to create a new comment
+    const response = await fetch(`/api/comments/${postId}`, {
+      method: 'POST',
+      body: JSON.stringify({ comment: newComment }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (response.ok) {
+      // If the comment creation is successful, redirect or refresh the page as needed
+      window.location.reload(); // Example: Refresh the page
+    } else {
+      // Handle the error response from the server
+      const errorData = await response.json();
+      console.log('Error:', errorData);
+      // Handle displaying an error message to the user
+    }
+  } catch (error) {
+    console.log('Error:', error);
+    // Handle displaying an error message to the user
   }
 };
 
-// Add an event listener to the update form submit button
-updateForm.addEventListener("submit", updateFormHandler);
-
-
+// Add an event listener to the "Update" button
+document.querySelector('#commentBtn').addEventListener('click', handleCommentSubmit);

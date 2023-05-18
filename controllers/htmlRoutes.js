@@ -31,7 +31,7 @@ router.get("/", async (req, res) => {
 
     const users = userData.map((project) => project.get({ plain: true }));
 
-    res.render("logohome", { users,
+    res.render("profile", { users,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
@@ -111,7 +111,7 @@ router.get("/home", withAuth, async (req, res) => {
 
     console.log(users);
 
-    console.log('==============================');
+    // console.log('==============================');
 
        const posts1 = users[0].Posts;
        const posts2 = users[1].Posts;
@@ -121,13 +121,49 @@ router.get("/home", withAuth, async (req, res) => {
         const allPosts = posts1.concat(posts2);     
         const allComments = comments.concat(comments2);  
 
-        console.log(allPosts);
-        console.log('==============================');
-        console.log(allComments);
+        // console.log(allPosts);
+        // console.log('==============================');
+        // console.log(allComments);
     
     const logged_in = true;
 
     res.render("home", { users, allPosts, allComments, logged_in });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.get("/posts/:id", withAuth, async (req, res) => {
+  try {
+    const userData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          include: [Comment],
+        },
+        ],
+    });
+
+    if (!userData) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const posts = userData.get({ plain: true });
+    const user = posts.User;
+    const comment = user.Comments;
+
+    console.log(posts);
+
+    const logged_in = true;
+
+    res.render("user", {
+      posts,
+      user,
+      comment,
+      logged_in,
+      loggedIn: req.session.loggedIn,
+    });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

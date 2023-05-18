@@ -7,10 +7,15 @@ const routes = require("./controllers");
 const sequelize = require("./config/connection");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
+
 const app = express();
 const PORT = process.env.PORT || 3005;
 
 const hbs = exphbs.create({});
+
+hbs.handlebars.registerHelper('isEqual', function (val1, val2, options) {
+  return val1 === val2 ? options.fn(this) : options.inverse(this);
+});
 
 const sess = {
   secret: process.env.SESSION_SECRET, // random string used to create session id.
